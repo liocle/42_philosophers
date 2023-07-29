@@ -58,7 +58,6 @@ static t_return_value	store_arg_if_validated(t_party *party, char *string,
 		party->time_to_sleep = validated_value * 1000;
 	else if (argument == 5)
 		party->number_of_meals = (int)validated_value;
-	// I don't like that the below is here because it repeats it 4 times
 	return (SUCCESS);
 }
 
@@ -107,8 +106,7 @@ t_return_value	parse_args(t_party *party, int argc, char **argv)
 				printf("Recommended philosopher amount should be less or equal to \
 200\n\n");
 			else if (ret_val == ARG_NOT_NUMERIC)
-				printf("Arguments must be only positive numbers (0 considered not \
-valid)\n\n");
+				printf("Arguments must be only non zero positive numbers\n\n");
 			print_philo_usage();
 			return (ret_val);
 		}

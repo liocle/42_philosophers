@@ -95,7 +95,10 @@ void				*philosopher_routine(void *philosopher_data);
  */
 void				*monitoring_routine(void *party_data);
 
-
+/**
+ * Contained in cleanup.c
+ */
 void				clean_up(t_party	*party); 
+t_return_value		join_threads_to_exit_party(t_party *party);
 
 #endif
