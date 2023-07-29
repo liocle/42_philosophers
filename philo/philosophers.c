@@ -13,7 +13,7 @@ static void	initialize_party_start_time(t_party *party)
 	}
 }
 
-static t_return_value	start_party(t_party *party)
+static t_return_value	initialize_party(t_party *party)
 {
 	unsigned int	i;
 
@@ -40,7 +40,8 @@ static t_return_value	start_party(t_party *party)
 static t_return_value	run_dining_party(t_party *party)
 {
 	pthread_mutex_lock(&(party->guard));
-	start_party(party);
+	if (initialize_party(party) == THREAD_FAIL)
+		return (THREAD_FAIL);
 	pthread_mutex_unlock(&(party->guard));
 	if (join_threads_to_exit_party(party) == JOIN_FAIL)
 		return (JOIN_FAIL);
@@ -72,10 +73,10 @@ int	main(int ac, char **av)
 		return (ret_val);
 	ret_val = run_dining_party(&party);
 	if (ret_val != SUCCESS)
-	 {
+	{
 		clean_up(&party);
 		return (ret_val);
-	 }
+	}
 	clean_up(&party);
 	return (SUCCESS);
 }

@@ -17,7 +17,6 @@ t_return_value prepare_party(t_party *party)
 	unsigned int		i;
 	
 	party->someone_dead = 0;
-	party->number_of_philosophers_fed = 0;
 	party->philosophers = malloc(sizeof(t_philosopher) * \
 		party->number_of_philosophers);
 	if (party->philosophers == NULL)
@@ -44,8 +43,6 @@ t_return_value prepare_party(t_party *party)
 	if (pthread_mutex_init(&(party->guard), NULL) != SUCCESS)
 		return (MUTEX_FAIL);
 	if (pthread_mutex_init(&(party->dying), NULL) != SUCCESS)
-		return (MUTEX_FAIL);
-	if (pthread_mutex_init(&(party->reporting_enough_meals), NULL) != SUCCESS)
 		return (MUTEX_FAIL);
 	return (SUCCESS);
 }

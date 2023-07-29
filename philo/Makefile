@@ -6,7 +6,7 @@
 #    By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/22 15:37:53 by lclerc            #+#    #+#              #
-#    Updated: 2023/07/26 17:28:24 by lclerc           ###   ########.fr        #
+#    Updated: 2023/07/29 20:44:14 by lclerc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,16 +57,19 @@ $(OBJ_DIR)/%.o: %.c $(INC)
 #******************************************************************************#
 
 # Rule to compile the program with address sanitizer
+debug: fclean
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: all
 
 # Rule to compile the program with thread sanitizer
+thread_debug: fclean
 thread_debug: CFLAGS += $(THREAD_DEBUG_FLAGS)
 thread_debug: all
 
 # Rule to compile with execution speed optimization
-optimized : CFLAGS += $(CFLAGS_OPTIMIZED)
-optimized : all 
+optimized: fclean
+optimized: CFLAGS += $(CFLAGS_OPTIMIZED)
+optimized: all 
 
 #******************************************************************************#
 # Cleaning - Deletion														   #

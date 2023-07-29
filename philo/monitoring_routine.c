@@ -65,7 +65,7 @@ void	*monitoring_routine(void *party_data)
 			pthread_mutex_unlock(&(party->dying));
 			break ;
 		}
-		custom_usleep(party->time_to_die / 10, party);
+		custom_usleep(party->time_to_die / 1000, party);
 	}
 	return (NULL);
 }

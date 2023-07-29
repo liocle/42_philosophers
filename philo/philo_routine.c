@@ -11,13 +11,15 @@ static t_return_value	eat_sleep_think(t_philosopher *philosopher)
 		print_whats_happening(philosopher, "has taken a fork");
 		// Should this be 2 different mutexes instad?
 		pthread_mutex_lock(&philosopher->meal_update);
-		philosopher->meal_count++;
 		philosopher->time_last_ate = get_current_time();
 		pthread_mutex_unlock(&philosopher->meal_update);
 		print_whats_happening(philosopher, "is eating");
 		custom_usleep(philosopher->party->time_to_eat, philosopher->party);
 		pthread_mutex_unlock(philosopher->fork_own);
 		pthread_mutex_unlock(philosopher->fork_borrowed);
+		pthread_mutex_lock(&philosopher->meal_update);
+		philosopher->meal_count++;
+		pthread_mutex_unlock(&philosopher->meal_update);
 		print_whats_happening(philosopher, "is sleeping");
 		custom_usleep(philosopher->party->time_to_sleep, philosopher->party);
 		print_whats_happening(philosopher, "is thinking");

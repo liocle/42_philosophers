@@ -19,6 +19,8 @@ static unsigned long long	ascii_to_positive_int(const char *str)
 	while (*str >= '0' && *str <= '9')
 	{
 		result = result * 10 + *str - '0';
+		if (result > MAX_TIME_VALUE)
+			return (0);
 		str++;
 	}
 	if (*str != '\0')
@@ -39,7 +41,7 @@ static unsigned long long	ascii_to_positive_int(const char *str)
 static t_return_value	store_arg_if_validated(t_party *party, char *string,
 		int argument)
 {
-	int	validated_value;
+	unsigned long long	validated_value;
 
 	validated_value = ascii_to_positive_int(string);
 	if (validated_value == 0)

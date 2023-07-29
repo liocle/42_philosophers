@@ -13,7 +13,6 @@ void	clean_up(t_party	*party)
 	}
 	pthread_mutex_destroy(&(party->guard));
 	pthread_mutex_destroy(&(party->dying));
-	pthread_mutex_destroy(&(party->reporting_enough_meals));
 	free(party->philosophers);
 	free(party->forks);
 }

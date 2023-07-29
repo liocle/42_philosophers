@@ -10,6 +10,7 @@
 # define EXPECT_ARG_COUNT 5
 # define EXPECT_ARG_COUNT_WITH_MEALS 6
 # define MAX_AMOUNT_PHILO_ALLOWED 200
+# define MAX_TIME_VALUE 9223372036854775
 
 
 typedef struct s_party	t_party;
@@ -39,9 +40,7 @@ typedef struct s_party
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		guard; // INITIALIZED
 	pthread_mutex_t		dying; // someone_dead
-	pthread_mutex_t		reporting_enough_meals; // number_of_philosophers_fed
 	unsigned int		someone_dead;
-	unsigned int		number_of_philosophers_fed;
 }						t_party;
 
 
