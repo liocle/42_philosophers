@@ -6,7 +6,7 @@
 #    By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/22 15:37:53 by lclerc            #+#    #+#              #
-#    Updated: 2023/07/29 20:44:14 by lclerc           ###   ########.fr        #
+#    Updated: 2023/07/29 21:25:43 by lclerc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(OBJ_DIR)/%.o: %.c $(INC)
 	$(COMPILE) -MMD -I $(INC) $< -c -o $@
 
 #******************************************************************************#
-# Debug & Optimization rules																   #
+# Debug & Optimization rules												   #
 #******************************************************************************#
 
 # Rule to compile the program with address sanitizer

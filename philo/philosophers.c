@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/29 21:18:12 by lclerc            #+#    #+#             */
+/*   Updated: 2023/07/29 21:18:13 by lclerc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 static void	initialize_party_start_time(t_party *party)
@@ -35,7 +47,6 @@ static t_return_value	initialize_party(t_party *party)
 	}
 	return (SUCCESS);
 }
-
 
 static t_return_value	run_dining_party(t_party *party)
 {

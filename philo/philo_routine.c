@@ -1,31 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_routine.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/29 21:18:06 by lclerc            #+#    #+#             */
+/*   Updated: 2023/07/31 14:18:08 by lclerc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 static t_return_value	eat_sleep_think(t_philosopher *philosopher)
 {
-	// TODO: refactor this
-	if (philosopher->party->number_of_philosophers != 1)
-	{
-		pthread_mutex_lock(philosopher->fork_own);
-		print_whats_happening(philosopher, "has taken a fork");
-		pthread_mutex_lock(philosopher->fork_borrowed);
-		print_whats_happening(philosopher, "has taken a fork");
-		// Should this be 2 different mutexes instad?
-		pthread_mutex_lock(&philosopher->meal_update);
-		philosopher->time_last_ate = get_current_time();
-		pthread_mutex_unlock(&philosopher->meal_update);
-		print_whats_happening(philosopher, "is eating");
-		custom_usleep(philosopher->party->time_to_eat, philosopher->party);
-		pthread_mutex_unlock(philosopher->fork_own);
-		pthread_mutex_unlock(philosopher->fork_borrowed);
-		pthread_mutex_lock(&philosopher->meal_update);
-		philosopher->meal_count++;
-		pthread_mutex_unlock(&philosopher->meal_update);
-		print_whats_happening(philosopher, "is sleeping");
-		custom_usleep(philosopher->party->time_to_sleep, philosopher->party);
-		print_whats_happening(philosopher, "is thinking");
-		return (SUCCESS);
-	}
-	return (SINGLE_PHILO_CASE);
+	if (philosopher->party->number_of_philosophers == 1)
+		return (SINGLE_PHILO_CASE);
+	pthread_mutex_lock(philosopher->fork_own);
+	print_whats_happening(philosopher, "has taken a fork");
+	pthread_mutex_lock(philosopher->fork_borrowed);
+	print_whats_happening(philosopher, "has taken a fork");
+	pthread_mutex_lock(&philosopher->meal_update);
+	philosopher->time_last_ate = get_current_time();
+	pthread_mutex_unlock(&philosopher->meal_update);
+	print_whats_happening(philosopher, "is eating");
+	custom_usleep(philosopher->party->time_to_eat, philosopher->party);
+	pthread_mutex_unlock(philosopher->fork_own);
+	pthread_mutex_unlock(philosopher->fork_borrowed);
+	pthread_mutex_lock(&philosopher->meal_update);
+	philosopher->meal_count++;
+	pthread_mutex_unlock(&philosopher->meal_update);
+	print_whats_happening(philosopher, "is sleeping");
+	custom_usleep(philosopher->party->time_to_sleep, philosopher->party);
+	print_whats_happening(philosopher, "is thinking");
+	return (SUCCESS);
 }
 
 void	*philosopher_routine(void *philosopher_data)

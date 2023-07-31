@@ -1,5 +1,16 @@
-#include "philosophers.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   monitoring_routine.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/29 21:17:17 by lclerc            #+#    #+#             */
+/*   Updated: 2023/07/31 10:21:29 by lclerc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "philosophers.h"
 
 static t_return_value	someone_starved(t_party *party)
 {
@@ -16,7 +27,7 @@ static t_return_value	someone_starved(t_party *party)
 		pthread_mutex_unlock(&(party->philosophers[i].meal_update));
 		if (curr_time - time_philo_last_ate >= party->time_to_die)
 		{
-			print_whats_happening(party->philosophers, "died");
+			print_whats_happening(&(party->philosophers[i]), "died");
 			return (SOMEONE_DIED);
 		}
 		i++;
@@ -65,7 +76,7 @@ void	*monitoring_routine(void *party_data)
 			pthread_mutex_unlock(&(party->dying));
 			break ;
 		}
-		custom_usleep(party->time_to_die / 1000, party);
+		custom_usleep(party->time_to_die / 10, party);
 	}
 	return (NULL);
 }

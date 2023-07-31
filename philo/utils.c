@@ -1,13 +1,24 @@
-#include "philosophers.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/29 21:18:29 by lclerc            #+#    #+#             */
+/*   Updated: 2023/07/31 11:13:18 by lclerc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "philosophers.h"
 
 void	print_whats_happening(t_philosopher *philosopher, char *event)
 {
 	unsigned long long	timestamp;
 
+	pthread_mutex_lock(&(philosopher->party->dying));
 	timestamp = get_current_time() - philosopher->party->party_start_time;
 	timestamp /= 1000ULL;
-	pthread_mutex_lock(&(philosopher->party->dying));
 	if (philosopher->party->someone_dead == 0)
 		printf("%llu\t%d\t%s\n", timestamp, philosopher->index + 1, event);
 	pthread_mutex_unlock(&(philosopher->party->dying));
@@ -31,10 +42,9 @@ void	custom_usleep(unsigned long long duration, t_party *party)
 	}
 }
 
-
 unsigned long long	get_current_time(void)
 {
-	struct timeval tp;
+	struct timeval	tp;
 
 	gettimeofday(&tp, NULL);
 	return ((unsigned long long)tp.tv_sec * 1000000ULL + tp.tv_usec);
