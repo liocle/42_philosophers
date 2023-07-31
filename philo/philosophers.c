@@ -6,12 +6,22 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:18:12 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/29 21:18:13 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/07/31 17:35:41 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
+/**
+ * @brief Initializes the party start time and sets the time_last_ate for all 
+ * philosophers.
+ *
+ * This function initializes the party's start time to the current time and 
+ * sets the time_last_ate for each philosopher to the party's start time. It 
+ * updates the time_last_ate of each philosopher to the party's start time, 
+ * indicating that they have not eaten since the party's inception.
+ *
+ * @param party A pointer to the t_party struct representing the party data.
+ */
 static void	initialize_party_start_time(t_party *party)
 {
 	unsigned int	i;
@@ -25,6 +35,23 @@ static void	initialize_party_start_time(t_party *party)
 	}
 }
 
+/**
+ * @brief Initializes the dining party.
+ *
+ * This function starts the dining party by creating threads for each 
+ * philosopher using the `start_philosopher` function. If creating a thread 
+ * for any philosopher fails, the function unlocks the party's guard mutex 
+ * and returns THREAD_FAIL. If all threads are successfully created, the 
+ * function initializes the party start time using 
+ * `initialize_party_start_time` and starts the monitoring thread using 
+ * `start_monitoring`. If starting the monitoring thread fails, the function 
+ * unlocks the party's guard mutex and returns THREAD_FAIL. Otherwise, it 
+ * returns SUCCESS.
+ *
+ * @param party A pointer to the t_party struct representing the party data.
+ * @return t_return_value The return value indicating the result of 
+ * initializing the party.
+ */
 static t_return_value	initialize_party(t_party *party)
 {
 	unsigned int	i;
@@ -47,7 +74,21 @@ static t_return_value	initialize_party(t_party *party)
 	}
 	return (SUCCESS);
 }
-
+/**
+ * @brief Runs the dining party.
+ *
+ * This function is the core of the dining party process. It locks the 
+ * party's guard mutex, then initializes and starts the party using the 
+ * `initialize_party` function. After initializing and starting the party, it 
+ * unlocks the party's guard mutex to allow all philosophers to start their 
+ * routines concurrently. The function then waits for all philosopher threads 
+ * to finish using the `join_threads_to_exit_party` function. If joining any 
+ * philosopher thread fails, the function returns JOIN_FAIL. Otherwise, it 
+ * returns SUCCESS.
+ *
+ * @param party A pointer to the t_party struct representing the party data.
+ * @return t_return_value SUCCESS, THREAD_FAIL or JOIN_FAIL
+ */
 static t_return_value	run_dining_party(t_party *party)
 {
 	pthread_mutex_lock(&(party->guard));
@@ -69,7 +110,7 @@ static t_return_value	run_dining_party(t_party *party)
  *
  * @param ac Number of command-line arguments
  * @param av Array of command-line argument strings
- * @return int `SUCCESS` if the program runs successfully, otherwise `ERROR`
+ * @return int SUCCESS or the various error messages carried by ret_val.
  */
 int	main(int ac, char **av)
 {

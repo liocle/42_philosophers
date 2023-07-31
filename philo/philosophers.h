@@ -6,26 +6,40 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:18:20 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/31 14:09:36 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/07/31 17:47:27 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
+/* ************************************************************************** */
+/*   Standard Library Headers 												  */
+/* ************************************************************************** */
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
 
+/* ************************************************************************** */
+/*   Define Constants														  */
+/* ************************************************************************** */
 # define EXPECT_ARG_COUNT 5
 # define EXPECT_ARG_COUNT_WITH_MEALS 6
 # define MAX_AMOUNT_PHILO_ALLOWED 500
 # define MAX_TIME_VALUE 9223372036854775
 
-typedef struct s_party	t_party;
+/* ************************************************************************** */
+/*   Forward Declarations													  */
+/* ************************************************************************** */
+typedef struct s_party			t_party;
+typedef struct s_philosopher	t_philosopher;
+typedef enum e_return_value		t_return_value;
 
+/* ************************************************************************** */
+/*   Struct Definitions														  */
+/* ************************************************************************** */
 typedef struct s_philosopher
 {
 	pthread_t			thread;
@@ -54,6 +68,9 @@ typedef struct s_party
 	unsigned int		someone_dead;
 }						t_party;
 
+/* ************************************************************************** */
+/*   Enum Definitions														  */
+/* ************************************************************************** */
 typedef enum e_return_value
 {
 	SUCCESS,
@@ -70,45 +87,20 @@ typedef enum e_return_value
 	SOMEONE_DIED,
 	EVERYONE_IS_FED,
 }						t_return_value;
-
-/**
- * Contained in input.c 
- */
+/* ************************************************************************** */
+/*   Function Prototypes													  */
+/* ************************************************************************** */
 t_return_value			parse_args(t_party *party, int argc, char **argv);
-
-/**
- * Contained in utils.c 
- */
 unsigned long long		get_current_time(void);
 void					custom_usleep(unsigned long long duration,
 							t_party *party);
 void					print_whats_happening(t_philosopher *philosopher,
 							char *event);
-
-/**
- * Contained in party_preparation
- */
 t_return_value			prepare_party(t_party *party);
-
-/**
- * Contained in start_threads.c
- */
 t_return_value			start_philosopher(t_party *party, unsigned int i);
 t_return_value			start_monitoring(t_party *party);
-
-/**
- * Contained in philo_routine.c
- */
 void					*philosopher_routine(void *philosopher_data);
-
-/**
- *	Contained in monitoring_routine.c
- */
 void					*monitoring_routine(void *party_data);
-
-/**
- * Contained in cleanup.c
- */
 void					clean_up(t_party *party);
 t_return_value			join_threads_to_exit_party(t_party *party);
 

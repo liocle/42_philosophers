@@ -6,12 +6,24 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:18:25 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/29 21:51:37 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/07/31 18:00:17 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
+/**
+ * @brief Create and start a philosopher thread.
+ *
+ * This function creates a new thread for a philosopher in the given party.
+ * The philosopher's index is set, and the `philosopher_routine` function is
+ * assigned as the entry point for the thread. The philosopher's data is 
+ * passed as an argument to the thread.
+ *
+ * @param party The party struct containing information about the philosophers.
+ * @param i The index of the philosopher to create and start the thread for.
+ * @return t_return_value The result of the operation - SUCCESS if the thread
+ * was created successfully, THREAD_FAIL otherwise.
+ */
 t_return_value	start_philosopher(t_party	*party, unsigned int i)
 {
 	party->philosophers[i].index = i;
@@ -23,7 +35,17 @@ t_return_value	start_philosopher(t_party	*party, unsigned int i)
 	}
 	return (SUCCESS);
 }
-
+/**
+ * @brief Create and start the monitoring thread.
+ *
+ * This function creates a new thread for the monitoring routine in the given 
+ * party. The `monitoring_routine` function is assigned as the entry point 
+ * for the thread. The party data is passed as an argument to the thread.
+ *
+ * @param party The party struct containing information about the philosophers.
+ * @return t_return_value The result of the operation - SUCCESS if the thread
+ * was created successfully, THREAD_FAIL otherwise.
+ */
 t_return_value	start_monitoring(t_party	*party)
 {
 	if (pthread_create(&(party->monitoring_thread), NULL, \

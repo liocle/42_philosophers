@@ -6,7 +6,7 @@
 #    By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/22 15:37:53 by lclerc            #+#    #+#              #
-#    Updated: 2023/07/29 21:25:43 by lclerc           ###   ########.fr        #
+#    Updated: 2023/07/31 17:48:32 by lclerc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@
 NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
-CFLAGS_OPTIMIZED = -O2
+CFLAGS_OPTIMIZED = -Ofast
 DEBUG_FLAGS = -g -fsanitize=address -static-libsan
 THREAD_DEBUG_FLAGS = -g -fsanitize=thread -static-libsan
 COMPILE = $(CC) $(CFLAGS)
@@ -34,7 +34,6 @@ SRCS =	philosophers.c \
 		cleanup.c
 OBJ_DIR = build
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))
-DEP = $(OBJ:%.o=%.d)
 INC = philosophers.h
 
 #******************************************************************************#
@@ -50,7 +49,7 @@ $(NAME): $(OBJ)
 # having multiple header files project
 $(OBJ_DIR)/%.o: %.c $(INC)
 	mkdir -p $(OBJ_DIR)
-	$(COMPILE) -MMD -I $(INC) $< -c -o $@
+	$(COMPILE) -I $(INC) $< -c -o $@
 
 #******************************************************************************#
 # Debug & Optimization rules												   #
@@ -82,12 +81,6 @@ fclean: clean
 	/bin/rm -f $(NAME)
 
 re: fclean all
-
-#******************************************************************************#
-# Dependency tracking														   #
-#******************************************************************************#
-
--include $(DEP)
 
 #******************************************************************************#
 .PHONY: all clean fclean re debug thread_debug								   #

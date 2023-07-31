@@ -6,12 +6,27 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:17:17 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/31 10:21:29 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/07/31 15:38:18 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+/**
+ * @brief Checks if any philosopher has starved.
+ *
+ * This function checks if any philosopher in the party has starved by 
+ * comparing the current time with the time the philosopher last ate. If the 
+ * time since the philosopher's last meal exceeds the time_to_die value for 
+ * the party, the philosopher is considered to have starved, and the function 
+ * prints a death message. It returns SOMEONE_DIED if a philosopher has 
+ * starved,otherwise LIFE_GOES_ON.
+ *
+ * @param party A pointer to the t_party struct representing the party of 
+ * philosophers.
+ * @return t_return_value The return value indicating if a philosopher has 
+ * starved or not.
+ */
 static t_return_value	someone_starved(t_party *party)
 {
 	unsigned int		i;
@@ -35,6 +50,22 @@ static t_return_value	someone_starved(t_party *party)
 	return (LIFE_GOES_ON);
 }
 
+/**
+ * @brief Checks if all philosophers have eaten the specified number of 
+ * meals.
+ *
+ * This function checks if all philosophers in the party have eaten the 
+ * specified number of meals (party->number_of_meals). If party->
+ * number_of_meals is negative, it means the philosophers can eat infinitely, 
+ * and the function returns LIFE_GOES_ON. If all philosophers have eaten the 
+ * specified number of meals, it returns EVERYONE_IS_FED; otherwise, it 
+ * returns LIFE_GOES_ON.
+ *
+ * @param party A pointer to the t_party struct representing the party of 
+ * philosophers.
+ * @return t_return_value The return value indicating if all philosophers 
+ * have eaten the specified number of meals or not.
+ */
 static t_return_value	everyone_is_fed(t_party *party)
 {
 	unsigned int	i;
@@ -54,7 +85,21 @@ static t_return_value	everyone_is_fed(t_party *party)
 	}
 	return (EVERYONE_IS_FED);
 }
-
+/**
+ * @brief Monitoring routine for the philosophers.
+ *
+ * This function serves as a monitoring routine for the philosophers' party. 
+ * It continuously checks if any philosopher has starved or if all 
+ * philosophers have eaten the specified number of meals. If either of these 
+ * conditions is met, it sets party->someone_dead to 1 and exits the loop. 
+ * The function uses custom_usleep to sleep for a fraction of 
+ * party->time_to_die/10 between checks.*
+ * 
+ * @param party_data A pointer to the t_party struct representing the party 
+ * of philosophers.
+ * @return void* This function always returns NULL as it is intended to be 
+ * used as a pthread routine.
+ */
 void	*monitoring_routine(void *party_data)
 {
 	t_party	*party;
