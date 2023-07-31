@@ -6,7 +6,7 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:17:00 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/31 15:32:38 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/07/31 18:04:47 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static unsigned long long	ascii_to_positive_int(const char *str)
 		return (0);
 	return ((unsigned long long)result);
 }
+
 /**
  * @brief Validates and stores the arguments provided in the command-line.
  *

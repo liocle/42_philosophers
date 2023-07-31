@@ -6,11 +6,12 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:17:55 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/31 16:58:35 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/07/31 18:05:54 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
 /**
  * @brief Prepares a philosopher for the party.
  *
@@ -40,6 +41,7 @@ static t_return_value	prepare_philosopher(t_party *party, unsigned int i)
 		return (MUTEX_FAIL);
 	return (SUCCESS);
 }
+
 /**
  * @brief Initializes the mutexes for the party.
  *
@@ -78,6 +80,7 @@ static t_return_value	initialize_mutexes(t_party *party)
 		return (MUTEX_FAIL);
 	return (SUCCESS);
 }
+
 /**
  * @brief Prepares the party of philosophers.
  *

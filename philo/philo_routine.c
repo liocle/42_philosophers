@@ -6,7 +6,7 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:18:06 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/31 17:28:13 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/07/31 18:06:32 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static t_return_value	eat_sleep_think(t_philosopher *philosopher)
 	print_whats_happening(philosopher, "is thinking");
 	return (SUCCESS);
 }
+
 /**
  * @brief Handles the philosopher's life routine.
  *

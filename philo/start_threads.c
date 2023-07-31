@@ -6,7 +6,7 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:18:25 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/31 18:00:17 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/07/31 18:07:10 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_return_value	start_philosopher(t_party	*party, unsigned int i)
 	}
 	return (SUCCESS);
 }
+
 /**
  * @brief Create and start the monitoring thread.
  *

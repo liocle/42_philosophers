@@ -6,7 +6,7 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:18:12 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/31 17:35:41 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/07/31 18:06:54 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static t_return_value	initialize_party(t_party *party)
 	}
 	return (SUCCESS);
 }
+
 /**
  * @brief Runs the dining party.
  *

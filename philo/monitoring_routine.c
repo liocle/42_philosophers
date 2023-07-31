@@ -6,7 +6,7 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:17:17 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/31 15:38:18 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/07/31 18:06:10 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static t_return_value	everyone_is_fed(t_party *party)
 	}
 	return (EVERYONE_IS_FED);
 }
+
 /**
  * @brief Monitoring routine for the philosophers.
  *
