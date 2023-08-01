@@ -6,7 +6,7 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:17:17 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/31 18:06:10 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/08/01 13:17:08 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,7 @@ static t_return_value	everyone_is_fed(t_party *party)
  * It continuously checks if any philosopher has starved or if all 
  * philosophers have eaten the specified number of meals. If either of these 
  * conditions is met, it sets party->someone_dead to 1 and exits the loop. 
- * The function uses custom_usleep to sleep for a fraction of 
- * party->time_to_die/10 between checks.*
+ * A delay of 500 us is used between each loop iteration.
  * 
  * @param party_data A pointer to the t_party struct representing the party 
  * of philosophers.
@@ -122,7 +121,7 @@ void	*monitoring_routine(void *party_data)
 			pthread_mutex_unlock(&(party->dying));
 			break ;
 		}
-		custom_usleep(party->time_to_die / 10, party);
+		usleep(500);
 	}
 	return (NULL);
 }
