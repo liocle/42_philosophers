@@ -6,7 +6,7 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:17:17 by lclerc            #+#    #+#             */
-/*   Updated: 2023/08/01 13:17:08 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/08/02 17:24:08 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static t_return_value	someone_starved(t_party *party)
 	unsigned int		i;
 	unsigned long long	curr_time;
 	unsigned long long	time_philo_last_ate;
+	unsigned long long	timestamp;
 
 	i = 0;
 	while (i < party->number_of_philosophers)
@@ -42,7 +43,10 @@ static t_return_value	someone_starved(t_party *party)
 		pthread_mutex_unlock(&(party->philosophers[i].meal_update));
 		if (curr_time - time_philo_last_ate >= party->time_to_die)
 		{
-			print_whats_happening(&(party->philosophers[i]), "died");
+			pthread_mutex_lock(&(party->dying));
+			timestamp = get_current_time() - party->party_start_time;
+			timestamp /= 1000ULL;
+			printf("◦ %llu\t%d\t%s\n", timestamp, i + 1, "died");
 			return (SOMEONE_DIED);
 		}
 		i++;
@@ -109,7 +113,6 @@ void	*monitoring_routine(void *party_data)
 	{
 		if (someone_starved(party) == SOMEONE_DIED)
 		{
-			pthread_mutex_lock(&(party->dying));
 			party->someone_dead = 1;
 			pthread_mutex_unlock(&(party->dying));
 			break ;

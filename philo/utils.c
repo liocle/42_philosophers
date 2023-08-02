@@ -6,7 +6,7 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:18:29 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/31 11:13:18 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/08/02 17:15:11 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_whats_happening(t_philosopher *philosopher, char *event)
 	timestamp = get_current_time() - philosopher->party->party_start_time;
 	timestamp /= 1000ULL;
 	if (philosopher->party->someone_dead == 0)
-		printf("%llu\t%d\t%s\n", timestamp, philosopher->index + 1, event);
+		printf("◦ %llu\t%d\t%s\n", timestamp, philosopher->index + 1, event);
 	pthread_mutex_unlock(&(philosopher->party->dying));
 }
 
