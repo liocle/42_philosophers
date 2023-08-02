@@ -6,7 +6,7 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:18:20 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/31 17:47:27 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/08/02 18:25:01 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 /* ************************************************************************** */
 # define EXPECT_ARG_COUNT 5
 # define EXPECT_ARG_COUNT_WITH_MEALS 6
-# define MAX_AMOUNT_PHILO_ALLOWED 500
+# define MAX_AMOUNT_PHILO_ALLOWED 300
 # define MAX_TIME_VALUE 9223372036854775
 
 /* ************************************************************************** */

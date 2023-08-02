@@ -6,11 +6,12 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:18:06 by lclerc            #+#    #+#             */
-/*   Updated: 2023/07/31 18:06:32 by lclerc           ###   ########.fr       */
+/*   Updated: 2023/08/02 18:03:06 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
 /**
  * @brief Performs the eat-sleep-think routine for a philosopher.
  *
@@ -79,7 +80,7 @@ void	*philosopher_routine(void *philosopher_data)
 	pthread_mutex_lock(&(philosopher->party->guard));
 	pthread_mutex_unlock(&(philosopher->party->guard));
 	print_whats_happening(philosopher, "is thinking");
-	if (philosopher->index % 2 == 0)
+	if ((philosopher->index + 1) % 2 == 0)
 		custom_usleep(philosopher->party->time_to_eat / 10, philosopher->party);
 	while (1)
 	{
