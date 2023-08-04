@@ -6,7 +6,7 @@
 /*   By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:17:17 by lclerc            #+#    #+#             */
-/*   Updated: 2023/08/02 17:24:08by lclerc           ###   ########.fr       */
+/*   Updated: 2023/08/04 15:27:07 by lclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_return_value	someone_starved(t_party *party)
 			pthread_mutex_lock(&(party->dying));
 			timestamp = get_current_time() - party->party_start_time;
 			timestamp /= 1000ULL;
-			printf("◦ %llu\t%d\t%s\n", timestamp, i + 1, "died");
+			printf("%llu\t%d\t%s\n", timestamp, i + 1, "died");
 			return (SOMEONE_DIED);
 		}
 		i++;
@@ -124,7 +124,7 @@ void	*monitoring_routine(void *party_data)
 			pthread_mutex_unlock(&(party->dying));
 			break ;
 		}
-		usleep(500);
+		usleep(700);
 	}
 	return (NULL);
 }

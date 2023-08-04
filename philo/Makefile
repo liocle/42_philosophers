@@ -6,7 +6,7 @@
 #    By: lclerc <lclerc@hive.student.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/22 15:37:53 by lclerc            #+#    #+#              #
-#    Updated: 2023/08/02 15:12:02 by lclerc           ###   ########.fr        #
+#    Updated: 2023/08/03 12:43:16 by lclerc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ $(NAME): $(OBJ)
 # having multiple header files project
 $(OBJ_DIR)/%.o: %.c $(INC)
 	mkdir -p $(OBJ_DIR)
-	$(COMPILE) -I $(INC) $< -c -o $@
+	$(COMPILE) -I. $< -c -o $@
 
 #******************************************************************************#
 # Debug & Optimization rules												   #
