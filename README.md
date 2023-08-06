@@ -1,7 +1,5 @@
 # Philosophers Project
 
-![Philosophers Logo](link_to_logo.png)
-
 ## Table of Contents
 - [Introduction](#introduction)
 - [Requirements](#requirements)
@@ -10,9 +8,7 @@
 - [Command-line Arguments](#command-line-arguments)
 - [Function Descriptions](#function-descriptions)
 - [Documentation](#documentation)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
+
 
 ## Introduction
 The Philosophers Project is a multi-threaded simulation of the classic dining philosophers problem. It was developed as a student project for School 42 (Hive Helsinki) and aims to demonstrate synchronization and mutual exclusion techniques using pthreads and mutexes.
