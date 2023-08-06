@@ -51,12 +51,3 @@ Example: `./philo 5 800 200 150`
 
 ## Documentation
 Detailed function descriptions and implementation details can be found in the source code.
-
-## Contributing
-Contributions are welcome! If you find any issues or want to improve the project, feel free to open a pull request or submit an issue.
-
-## License
-This project is licensed under the MIT License. As a student project, it's essential to respect any specific licensing requirements or obligations set by School 42.
-
-## Acknowledgements
-Special thanks to the contributors and developers of the philosophers project.
